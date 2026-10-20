@@ -44,8 +44,16 @@ if(HAVE_COLDBOOT EQUAL -1)
   list(APPEND PLUGIN_DSP_FILES ColdBootStub.cpp)
 endif()
 
+# VST3 ovunque; su macOS anche l'AUv2 (.component, per Logic Pro e GarageBand).
+# -DWITH_AU=OFF per il solo VST3.
+option(WITH_AU "AUv2 su macOS" ON)
+set(EMU_PLUGIN_TARGETS vst3)
+if(APPLE AND WITH_AU)
+  list(APPEND EMU_PLUGIN_TARGETS au)
+endif()
+
 dpf_add_plugin(syntakt
-  TARGETS vst3
+  TARGETS ${EMU_PLUGIN_TARGETS}
   UI_TYPE opengl
   USE_FILE_BROWSER
   FILES_DSP ${PLUGIN_DSP_FILES}

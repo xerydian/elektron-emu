@@ -554,6 +554,11 @@ void SyntaktPlugin::coldBoot(double rate, uint32_t frames)
     });
 }
 
+void SyntaktPlugin::ioChanged(uint16_t, uint16_t numOutputs)
+{
+    fNumOutputs = numOutputs < DISTRHO_PLUGIN_NUM_OUTPUTS ? numOutputs : DISTRHO_PLUGIN_NUM_OUTPUTS;
+}
+
 void SyntaktPlugin::activate()
 {
     const uint32_t frames = getBufferSize();
@@ -607,12 +612,12 @@ void SyntaktPlugin::run(const float**, float** outputs, uint32_t frames, const M
             if (!writeMidiEvent(ev)) break;
         }
         fInRun.store(0);
-        for (int i = 0; i < kChannels; ++i)
+        for (uint32_t i = 0; i < fNumOutputs; ++i)
             std::memcpy(outputs[i], fCh[i], frames * sizeof(float));
         return;
     }
     fInRun.store(0);
-    for (int i = 0; i < kChannels; ++i) std::memset(outputs[i], 0, frames * sizeof(float));
+    for (uint32_t i = 0; i < fNumOutputs; ++i) std::memset(outputs[i], 0, frames * sizeof(float));
 }
 
 // ------------------------------------------------------------------ per la vista

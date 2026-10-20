@@ -31,8 +31,16 @@ add_custom_command(
   DEPENDS ${LAYOUT_JSON} ${CMAKE_CURRENT_SOURCE_DIR}/scripts/gen-layout.py)
 add_custom_target(panel_layout DEPENDS ${CMAKE_CURRENT_BINARY_DIR}/panel_layout.hpp)
 
+# VST3 ovunque; su macOS anche l'AUv2 (.component, per Logic Pro e GarageBand).
+# -DWITH_AU=OFF per il solo VST3.
+option(WITH_AU "AUv2 su macOS" ON)
+set(EMU_PLUGIN_TARGETS vst3)
+if(APPLE AND WITH_AU)
+  list(APPEND EMU_PLUGIN_TARGETS au)
+endif()
+
 dpf_add_plugin(digitakt2
-  TARGETS vst3
+  TARGETS ${EMU_PLUGIN_TARGETS}
   UI_TYPE opengl
   USE_FILE_BROWSER
   FILES_DSP DigitaktPlugin.cpp

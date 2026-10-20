@@ -68,6 +68,7 @@ protected:
     String getState(const char* key) const override;
     void setState(const char* key, const char* value) override;
 
+    void ioChanged(uint16_t numInputs, uint16_t numOutputs) override;
     void activate() override;
     void run(const float**, float** outputs, uint32_t frames, const MidiEvent* midi, uint32_t midiCount) override;
 
@@ -105,6 +106,7 @@ private:
     SyncOut fSyncOut;
     std::vector<float> fBuf;
     float* fCh[kChannels] = {};
+    uint32_t fNumOutputs = DISTRHO_PLUGIN_NUM_OUTPUTS;     // l'AU in stereo ne usa 2 (ioChanged)
     uint32_t fMaxFrames = 0;
     double fRate = 0;
     uint32_t fRtFrames = 0;

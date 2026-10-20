@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist>
+  <dict>
+    <key>CFBundleExecutable</key>
+    <string>digitone2</string>
+    <key>CFBundleIconFile</key>
+    <string></string>
+    <key>CFBundleIdentifier</key>
+    <string>simo.digitone2</string>
+    <key>CFBundleName</key>
+    <string>digitone2</string>
+    <key>CFBundleDisplayName</key>
+    <string>Digitone II</string>
+    <key>CFBundlePackageType</key>
+    <string>BNDL</string>
+    <key>CFBundleSignature</key>
+    <string>????</string>
+    <key>CFBundleShortVersionString</key>
+    <string>0.1.0</string>
+    <key>CFBundleVersion</key>
+    <string>0.1.0</string>
+    <key>NSHumanReadableCopyright</key>
+    <string>http://spdx.org/licenses/GPL-2.0-or-later.html</string>
+    <key>NSHighResolutionCapable</key>
+    <true/>
+    <key>AudioComponents</key>
+    <array>
+      <dict>
+        <key>name</key>
+        <string>Elektron Emu: Digitone II</string>
+        <key>description</key>
+        <string>Digitone II emulator (runs your own firmware)</string>
+        <key>factoryFunction</key>
+        <string>PluginAUFactory</string>
+        <key>type</key>
+        <string>aumu</string>
+        <key>subtype</key>
+        <string>dtn2</string>
+        <key>manufacturer</key>
+        <string>Simo</string>
+        <key>version</key>
+        <integer>256</integer>
+        <key>resourceUsage</key>
+        <dict>
+          <key>network.client</key>
+          <true/>
+          <key>temporary-exception.files.all.read-write</key>
+          <true/>
+        </dict>
+      </dict>
+    </array>
+  </dict>
+</plist>

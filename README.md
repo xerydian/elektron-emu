@@ -39,6 +39,35 @@ download them. Unblock them once with:
 xattr -dr com.apple.quarantine ~/Library/Audio/Plug-Ins/VST3/*.vst3
 ```
 
+## Audio Unit (Logic Pro, GarageBand)
+
+Each `plugin/mac` folder also has the Audio Unit (`.component`, Apple Silicon).
+Copy it to `~/Library/Audio/Plug-Ins/Components`, unblock it once and check
+that Logic sees it:
+
+```
+xattr -dr com.apple.quarantine ~/Library/Audio/Plug-Ins/Components/*.component
+killall -9 AudioComponentRegistrar; auval -a | grep Simo
+```
+
+To build them yourself: on Mac the same source also builds the `.component`. From the root of the
+repo, on an Apple Silicon Mac with the Xcode command line tools, cmake, ninja,
+pkg-config and python3 (`brew install cmake ninja pkg-config`):
+
+```
+./build-au-mac.sh                 # all five machines
+./build-au-mac.sh Syntakt         # or just some of them
+```
+
+It builds each plug-in with its `build-mac.sh` (the `.vst3` is rebuilt too),
+installs the `.component` in `~/Library/Audio/Plug-Ins/Components` and checks
+it with `auval`. `NO_INSTALL=1` only builds. If Logic doesn't show them, use
+Plug-in Manager → Reset & Rescan Selection.
+
+The firmware goes in the same folder as for the VST3. In Logic the Digitakt II
+shows up as "Digitakt II (AU2)". Digitakt II, Syntakt and Rytm can be loaded as a stereo
+instrument or as a multi-output one.
+
 ## What isn't real
 
 The Rytm's analog voices and effects, and the Syntakt's analog tracks 9–12,

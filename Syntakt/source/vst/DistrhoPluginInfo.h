@@ -10,6 +10,7 @@
 #define DISTRHO_PLUGIN_BRAND "Elektron Emu"
 #define DISTRHO_PLUGIN_NAME  "Syntakt"
 #define DISTRHO_PLUGIN_URI   "urn:simo:syntakt"
+#define DISTRHO_PLUGIN_CLAP_ID "simo.syntakt"   // serve anche all'Info.plist dell'AU
 
 #define DISTRHO_PLUGIN_BRAND_ID  Simo
 #define DISTRHO_PLUGIN_UNIQUE_ID sntk
@@ -20,6 +21,8 @@
 #define DISTRHO_PLUGIN_IS_SYNTH        1
 #define DISTRHO_PLUGIN_NUM_INPUTS      0
 #define DISTRHO_PLUGIN_NUM_OUTPUTS     6
+// solo AU: oltre alle uscite separate, lo stereo del Main (Logic, GarageBand)
+#define DISTRHO_PLUGIN_EXTRA_IO        { 0, 2 },
 #define DISTRHO_PLUGIN_WANT_DIRECT_ACCESS 1
 #define DISTRHO_PLUGIN_WANT_LATENCY    1
 #define DISTRHO_PLUGIN_WANT_MIDI_INPUT 1
